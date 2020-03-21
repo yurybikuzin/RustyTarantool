@@ -207,11 +207,12 @@ impl Dispatch {
                 self.try_send_buffered_command(sink).await
             }
             None => {
+                Ok(())
                 //inbound sink is finished. close coroutine
-                Err(io::Error::new(
-                    io::ErrorKind::InvalidInput,
-                    "inbound commands queue is over",
-                ))
+                // Err(io::Error::new(
+                //     io::ErrorKind::InvalidInput,
+                //     "inbound commands queue is over",
+                // ))
             }
         }
     }
